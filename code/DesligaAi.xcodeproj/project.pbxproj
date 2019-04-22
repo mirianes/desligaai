@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		FB1144AC2266B49400261F2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1144AB2266B49400261F2D /* AppDelegate.swift */; };
-		FB1144AE2266B49400261F2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1144AD2266B49400261F2D /* ViewController.swift */; };
 		FB1144B12266B49400261F2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB1144AF2266B49400261F2D /* Main.storyboard */; };
 		FB1144B32266B49500261F2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB1144B22266B49500261F2D /* Assets.xcassets */; };
 		FB1144B62266B49500261F2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB1144B42266B49500261F2D /* LaunchScreen.storyboard */; };
 		FB1144C12266B49500261F2D /* DesligaAiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1144C02266B49500261F2D /* DesligaAiTests.swift */; };
 		FB1144CC2266B49500261F2D /* DesligaAiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1144CB2266B49500261F2D /* DesligaAiUITests.swift */; };
+		FBB3C288226A995D00E485C5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB3C287226A995D00E485C5 /* LoginViewController.swift */; };
+		FBB3C28A226AC0A300E485C5 /* CadastroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB3C289226AC0A300E485C5 /* CadastroViewController.swift */; };
+		FBB3C28C226ACBB700E485C5 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB3C28B226ACBB700E485C5 /* config.swift */; };
+		FBBB7DD4226B54B6007DCCF4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBB7DD3226B54B6007DCCF4 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +39,6 @@
 /* Begin PBXFileReference section */
 		FB1144A82266B49400261F2D /* DesligaAi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesligaAi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB1144AB2266B49400261F2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FB1144AD2266B49400261F2D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FB1144B02266B49400261F2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FB1144B22266B49500261F2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB1144B52266B49500261F2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +49,10 @@
 		FB1144C72266B49500261F2D /* DesligaAiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DesligaAiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB1144CB2266B49500261F2D /* DesligaAiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesligaAiUITests.swift; sourceTree = "<group>"; };
 		FB1144CD2266B49500261F2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBB3C287226A995D00E485C5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FBB3C289226AC0A300E485C5 /* CadastroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadastroViewController.swift; sourceTree = "<group>"; };
+		FBB3C28B226ACBB700E485C5 /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
+		FBBB7DD3226B54B6007DCCF4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,11 +104,14 @@
 			isa = PBXGroup;
 			children = (
 				FB1144AB2266B49400261F2D /* AppDelegate.swift */,
-				FB1144AD2266B49400261F2D /* ViewController.swift */,
 				FB1144AF2266B49400261F2D /* Main.storyboard */,
+				FBB3C28B226ACBB700E485C5 /* config.swift */,
 				FB1144B22266B49500261F2D /* Assets.xcassets */,
 				FB1144B42266B49500261F2D /* LaunchScreen.storyboard */,
 				FB1144B72266B49500261F2D /* Info.plist */,
+				FBB3C287226A995D00E485C5 /* LoginViewController.swift */,
+				FBB3C289226AC0A300E485C5 /* CadastroViewController.swift */,
+				FBBB7DD3226B54B6007DCCF4 /* User.swift */,
 			);
 			path = DesligaAi;
 			sourceTree = "<group>";
@@ -256,7 +265,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB1144AE2266B49400261F2D /* ViewController.swift in Sources */,
+				FBB3C288226A995D00E485C5 /* LoginViewController.swift in Sources */,
+				FBB3C28C226ACBB700E485C5 /* config.swift in Sources */,
+				FBB3C28A226AC0A300E485C5 /* CadastroViewController.swift in Sources */,
+				FBBB7DD4226B54B6007DCCF4 /* User.swift in Sources */,
 				FB1144AC2266B49400261F2D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
