@@ -28,8 +28,10 @@ char token[] = TOKEN;
 char clientId[] = "d:" ORG ":" DEVICE_TYPE ":" DEVICE_ID;
 
 
-float umidade = 0.0;
-char umidadestr[6];
+float Irms = 0.0;
+char IrmsString[6];
+float potencia = 0.0;
+char potenciaString[6];
 
 
 WiFiClient wifiClient;
@@ -57,46 +59,7 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
 }
 
-
-//Função: faz a leitura do nível de umidade
-//Parâmetros: nenhum
-//Retorno: umidade percentual (0-100)
-//Observação: o ADC do NodeMCU permite até, no máximo, 3.3V. Dessa forma,
-//            para 3.3V, obtem-se (empiricamente) 978 como leitura de ADC
-//float FazLeituraUmidade(void)
-//{
-//    int ValorADC;
-//    float UmidadePercentual;
-// 
-//     ValorADC = analogRead(0);   //978 -> 3,3V
-//     Serial.print("[Leitura ADC] ");
-//     Serial.println(ValorADC);
-// 
-//     //Quanto maior o numero lido do ADC, menor a umidade.
-//     //Sendo assim, calcula-se a porcentagem de umidade por:
-//     //      
-//     //   Valor lido                 Umidade percentual
-//     //      _    0                           _ 100
-//     //      |                                |   
-//     //      |                                |   
-//     //      -   ValorADC                     - UmidadePercentual 
-//     //      |                                |   
-//     //      |                                |   
-//     //     _|_  978                         _|_ 0
-//     //
-//     //   (UmidadePercentual-0) / (100-0)  =  (ValorADC - 978) / (-978)
-//     //      Logo:
-//     //      UmidadePercentual = 100 * ((978-ValorADC) / 978)  
-//     
-//     UmidadePercentual = 100 * ((978-(float)ValorADC) / 978);
-//     Serial.print("[Umidade Percentual] ");
-//     Serial.print(UmidadePercentual);
-//     Serial.println("%");
-// 
-//     return UmidadePercentual;
-//}
-
-void serialPrintResults(String payload, int length, double Irms) {
+void serialPrintResults(String payload, int length, float Irms, float potencia) {
   int ValorADC;
 
   Serial.print(F("\nData length: "));
@@ -111,7 +74,7 @@ void serialPrintResults(String payload, int length, double Irms) {
 
   //Calcula e mostra o valor da potencia
   Serial.print(" Potencia : ");
-  Serial.println(Irms*rede);
+  Serial.println(potencia);
 
   ValorADC = analogRead(pino_sct);   //978 -> 3,3V
   Serial.print("[Leitura ADC] ");
@@ -134,7 +97,8 @@ void loop() {
   }
 
   //Calcula a corrente  
-  double Irms = emon1.calcIrms(1480);
+  Irms = emon1.calcIrms(1480);
+  potencia = Irms * rede;
   
   // Conversao Floats para Strings
   char TempString[32];  //  array de character temporario
@@ -142,16 +106,18 @@ void loop() {
   // dtostrf( [Float variable] , [Minimum SizeBeforePoint] , [sizeAfterPoint] , [WhereToStoreIt] )
   dtostrf(Irms, 2, 1, TempString);
   String IrmsString =  String(TempString);
+  dtostrf(potencia, 2, 1, TempString);
+  String potenciaString = String(TempString);
 
   // Prepara JSON para IOT Platform
   int length = 0;
 
   //Envia o Json 
-  String payload = "{\"d\":{\"corrente\":\"" + IrmsString + "\"}}";
+  String payload = "{\"d\":{\"corrente\":\"" + String(IrmsString) + "\" , \"potencia\":\"" + String(potenciaString) + "\"}}";
   length = payload.length();
 
   //Função para mostrar os resultados no serial monitor
-  serialPrintResults(payload, length, Irms);
+  serialPrintResults(payload, length, Irms, potencia);
 
   if (client.publish(topic, (char*) payload.c_str())) {
     Serial.println("Publish ok");
