@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  DesligaAi
 //
-//  Created by Miriane Silva on 16/04/2019.
-//  Copyright © 2019 DesligaAi. All rights reserved.
+//  Created by student on 24/04/19.
+//  Copyright © 2019 desligaAi. All rights reserved.
 //
 
 import UIKit
@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
     }

@@ -21,18 +21,20 @@ class CadastroViewController: UIViewController {
     }
     
     @IBAction func singup(_ sender: Any) {
+    
         let name = nameTextField.text
         let email = emailTextField.text
-        
         if (name != nil && email != nil && passwordTextField.text != nil) {
-            let body = ["name": name, "email": email, "password": passwordTextField.text]
-            UserCRUD.createUser(body as! [String: String], {(status) in
-                if status {
-                    self.singupSuccess()
-                }
-            })
+                let body = ["name": name, "email":email, "password": passwordTextField.text]
+                UserCRUD.createUser(body as![String: String], {(status) in
+                    if status {
+                        self.singupSuccess()
+                    }
+                })
         }
+    
     }
+
     
     func singupSuccess() {
         performSegue(withIdentifier: "singupSuccess", sender: self)

@@ -2,8 +2,8 @@
 //  User.swift
 //  DesligaAi
 //
-//  Created by Miriane Silva on 20/04/2019.
-//  Copyright © 2019 DesligaAi. All rights reserved.
+//  Created by student on 24/04/19.
+//  Copyright © 2019 desligaAi. All rights reserved.
 //
 
 import Foundation
