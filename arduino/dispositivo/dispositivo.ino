@@ -1,15 +1,17 @@
+#include <EmonLib.h>
 #include <ESP8266WiFi.h>
-#include <PubSubClient.h>
-
+#include <PubSubClient.h> 
 
 //atualize SSID e senha WiFi
 const char* ssid = "IBMHackatruckIoT";
 const char* password = "IOT2017IBM";
 
-
 //D4 only for Lolin board
 #define LED_BUILTIN D4
 
+EnergyMonitor emon1;              // Variável para usar a biblioeca emonLib
+int rede = 220.0;                 // Tensao da rede eletrica Nordeste
+int pino_sct = 2;                 // Pino do sensor SCT entrada (analógica) do Arduino.
 
 //Atualize os valores de Org, device type, device id e token
 #define ORG "fft8od"
@@ -50,7 +52,8 @@ void setup() {
   Serial.print("[INFO] Conectado WiFi IP: ");
   Serial.println(WiFi.localIP());
 
-
+  //Pino, calibracao - Cur Const= Ratio/BurdenR. 1800/62 = 29. 
+  emon1.current(pino_sct, 29);
   pinMode(LED_BUILTIN, OUTPUT);
 }
 
@@ -93,6 +96,29 @@ void setup() {
 //     return UmidadePercentual;
 //}
 
+void serialPrintResults(String payload, int length, double Irms) {
+  int ValorADC;
+
+  Serial.print(F("\nData length: "));
+  Serial.println(length);
+
+  Serial.print("Sending payload: ");
+  Serial.println(payload);
+
+  //Mostra o valor da corrente
+  Serial.print("Corrente : ");
+  Serial.print(Irms); // Irms
+
+  //Calcula e mostra o valor da potencia
+  Serial.print(" Potencia : ");
+  Serial.println(Irms*rede);
+
+  ValorADC = analogRead(pino_sct);   //978 -> 3,3V
+  Serial.print("[Leitura ADC] ");
+  Serial.println(ValorADC);
+
+  delay(1000);
+}
 
 void loop() {
 
@@ -107,33 +133,25 @@ void loop() {
     Serial.println();
   }
 
-
-  float umidade = FazLeituraUmidade();
+  //Calcula a corrente  
+  double Irms = emon1.calcIrms(1480);
   
   // Conversao Floats para Strings
   char TempString[32];  //  array de character temporario
 
-
   // dtostrf( [Float variable] , [Minimum SizeBeforePoint] , [sizeAfterPoint] , [WhereToStoreIt] )
-  dtostrf(umidade, 2, 1, TempString);
-  String umidadestr =  String(TempString);
-
+  dtostrf(Irms, 2, 1, TempString);
+  String IrmsString =  String(TempString);
 
   // Prepara JSON para IOT Platform
   int length = 0;
 
   //Envia o Json 
-  String payload = "{\"d\":{\"umidade\":\"" + umidadestr + "\"}}";
-
-
+  String payload = "{\"d\":{\"corrente\":\"" + IrmsString + "\"}}";
   length = payload.length();
-  Serial.print(F("\nData length"));
-  Serial.println(length);
 
-
-  Serial.print("Sending payload: ");
-  Serial.println(payload);
-
+  //Função para mostrar os resultados no serial monitor
+  serialPrintResults(payload, length, Irms);
 
   if (client.publish(topic, (char*) payload.c_str())) {
     Serial.println("Publish ok");
