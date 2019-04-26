@@ -11,12 +11,12 @@ const char* password = "IOT2017IBM";
 
 EnergyMonitor emon1;              // Variável para usar a biblioeca emonLib
 int rede = 220.0;                 // Tensao da rede eletrica Nordeste
-int pino_sct = 2;                 // Pino do sensor SCT entrada (analógica) do Arduino.
+int pino_sct = A0;                 // Pino do sensor SCT entrada (analógica) do Arduino.
 
 //Atualize os valores de Org, device type, device id e token
-#define ORG "fft8od"
-#define DEVICE_TYPE "NODE-MCU"
-#define DEVICE_ID "node-mcu-planta"
+#define ORG "mp7emo"
+#define DEVICE_TYPE "nodemcu"
+#define DEVICE_ID "nodemcu09"
 #define TOKEN "12345678"
 
 
