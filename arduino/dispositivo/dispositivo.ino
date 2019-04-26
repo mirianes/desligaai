@@ -11,7 +11,8 @@ const char* password = "IOT2017IBM";
 
 EnergyMonitor emon1;              // Variável para usar a biblioeca emonLib
 int rede = 220.0;                 // Tensao da rede eletrica Nordeste
-int pino_sct = A0;                 // Pino do sensor SCT entrada (analógica) do Arduino.
+int pino_sct = A0;                // Pino do sensor SCT entrada (analógica) do Arduino.
+int porta_rele = D1;              // Controle do rele
 
 //Atualize os valores de Org, device type, device id e token
 #define ORG "mp7emo"
@@ -32,6 +33,8 @@ float Irms = 0.0;
 char IrmsString[6];
 float potencia = 0.0;
 char potenciaString[6];
+bool statusRele = false;
+String statusDispositivo;
 
 
 WiFiClient wifiClient;
@@ -57,9 +60,10 @@ void setup() {
   //Pino, calibracao - Cur Const= Ratio/BurdenR. 1800/62 = 29. 
   emon1.current(pino_sct, 29);
   pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(porta_rele, OUTPUT);
 }
 
-void serialPrintResults(String payload, int length, float Irms, float potencia) {
+void serialPrintResults(String payload, int length) {
   int ValorADC;
 
   Serial.print(F("\nData length: "));
@@ -76,9 +80,8 @@ void serialPrintResults(String payload, int length, float Irms, float potencia) 
   Serial.print(" Potencia : ");
   Serial.println(potencia);
 
-  ValorADC = analogRead(pino_sct);   //978 -> 3,3V
-  Serial.print("[Leitura ADC] ");
-  Serial.println(ValorADC);
+  //Serial.print("Status: ");
+  //Serial.println(statusDispositivo);
 
   delay(1000);
 }
@@ -109,16 +112,40 @@ void loop() {
   dtostrf(potencia, 2, 1, TempString);
   String potenciaString = String(TempString);
 
+  // Informa para o usuário se o dispositivo está ligado ou desligado
+  if(statusRele) 
+  {
+    statusDispositivo = "Ligado";
+    statusRele = false;
+    digitalWrite(porta_rele, LOW); //Desliga rele
+    delay(500);
+   
+  } 
+  
+  else 
+  {
+    statusDispositivo = "Desligado";
+    statusRele = true;
+    digitalWrite(porta_rele, HIGH); //Liga rele
+    delay(500);
+  }
+
+
   // Prepara JSON para IOT Platform
   int length = 0;
 
   //Envia o Json 
-  String payload = "{\"d\":{\"corrente\":\"" + String(IrmsString) + "\" , \"potencia\":\"" + String(potenciaString) + "\"}}";
+  String payload = "{\"d\":{\"corrente\":\"" + String(IrmsString) + "\" , \"potencia\":\"" + String(potenciaString) + "\" , \"status\":\"" + String(statusDispositivo) + "\"}}";
   length = payload.length();
 
   //Função para mostrar os resultados no serial monitor
-  serialPrintResults(payload, length, Irms, potencia);
+  serialPrintResults(payload, length);
 
+  /*Função para receber informação do app
+   * getUserInfo(localization, status)
+  */
+  
+  
   if (client.publish(topic, (char*) payload.c_str())) {
     Serial.println("Publish ok");
     digitalWrite(LED_BUILTIN, LOW);
@@ -129,4 +156,5 @@ void loop() {
     Serial.println("Publish failed");
     Serial.println(client.state());
   }
+
 }
