@@ -118,7 +118,7 @@ void loop() {
     statusDispositivo = "Ligado";
     statusRele = false;
     digitalWrite(porta_rele, LOW); //Desliga rele
-    delay(500);
+    delay(1000);
    
   } 
   
@@ -127,7 +127,7 @@ void loop() {
     statusDispositivo = "Desligado";
     statusRele = true;
     digitalWrite(porta_rele, HIGH); //Liga rele
-    delay(500);
+    delay(1000);
   }
 
 
