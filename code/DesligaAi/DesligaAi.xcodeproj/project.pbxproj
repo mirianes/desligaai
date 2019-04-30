@@ -11,6 +11,8 @@
 		3F0554C42270E19D00331F1D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0554C32270E19D00331F1D /* User.swift */; };
 		3F0554C62270EA0900331F1D /* DispositivosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0554C52270EA0900331F1D /* DispositivosCollectionViewController.swift */; };
 		3F0554CA2270EDD700331F1D /* DispositivoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0554C92270EDD700331F1D /* DispositivoCollectionViewCell.swift */; };
+		3F21B5BC2278D1C20005ECF7 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21B5BB2278D1C20005ECF7 /* Device.swift */; };
+		3F21B5C22278DB750005ECF7 /* InfoDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21B5C12278DB750005ECF7 /* InfoDeviceViewController.swift */; };
 		3F3B257A2270CD510070B232 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3B25792270CD510070B232 /* AppDelegate.swift */; };
 		3F3B257C2270CD510070B232 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3B257B2270CD510070B232 /* ViewController.swift */; };
 		3F3B257F2270CD510070B232 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F3B257D2270CD510070B232 /* Main.storyboard */; };
@@ -44,6 +46,8 @@
 		3F0554C32270E19D00331F1D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3F0554C52270EA0900331F1D /* DispositivosCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispositivosCollectionViewController.swift; sourceTree = "<group>"; };
 		3F0554C92270EDD700331F1D /* DispositivoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispositivoCollectionViewCell.swift; sourceTree = "<group>"; };
+		3F21B5BB2278D1C20005ECF7 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		3F21B5C12278DB750005ECF7 /* InfoDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDeviceViewController.swift; sourceTree = "<group>"; };
 		3F3B25762270CD510070B232 /* DesligaAi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesligaAi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F3B25792270CD510070B232 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F3B257B2270CD510070B232 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,8 +116,10 @@
 				3F3B25792270CD510070B232 /* AppDelegate.swift */,
 				3F3B257B2270CD510070B232 /* ViewController.swift */,
 				3F3B257D2270CD510070B232 /* Main.storyboard */,
+				3F21B5BB2278D1C20005ECF7 /* Device.swift */,
 				3F0554C92270EDD700331F1D /* DispositivoCollectionViewCell.swift */,
 				3F0554C52270EA0900331F1D /* DispositivosCollectionViewController.swift */,
+				3F21B5C12278DB750005ECF7 /* InfoDeviceViewController.swift */,
 				3F3B25A92270DC960070B232 /* CadastroViewController.swift */,
 				3F0554C12270E13D00331F1D /* config.swift */,
 				3F0554C32270E19D00331F1D /* User.swift */,
@@ -280,8 +286,10 @@
 				3F3B25A82270D52D0070B232 /* LoginViewController.swift in Sources */,
 				3F3B257C2270CD510070B232 /* ViewController.swift in Sources */,
 				3F0554CA2270EDD700331F1D /* DispositivoCollectionViewCell.swift in Sources */,
+				3F21B5BC2278D1C20005ECF7 /* Device.swift in Sources */,
 				3F0554C42270E19D00331F1D /* User.swift in Sources */,
 				3F3B257A2270CD510070B232 /* AppDelegate.swift in Sources */,
+				3F21B5C22278DB750005ECF7 /* InfoDeviceViewController.swift in Sources */,
 				3F0554C22270E13D00331F1D /* config.swift in Sources */,
 				3F0554C62270EA0900331F1D /* DispositivosCollectionViewController.swift in Sources */,
 				3F3B25AA2270DC960070B232 /* CadastroViewController.swift in Sources */,

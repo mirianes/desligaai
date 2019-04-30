@@ -9,5 +9,9 @@
 import UIKit
 
 class DispositivoCollectionViewCell: UICollectionViewCell {
+        
+    @IBOutlet weak var deviceIconImageView: UIImageView!
+   
+    @IBOutlet weak var deviceNameLabel: UILabel!
     
 }
