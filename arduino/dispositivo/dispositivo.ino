@@ -1,6 +1,7 @@
-#include <EmonLib.h>
-#include <ESP8266WiFi.h>
+#include <EmonLib.h>    // https://www.arduinolibraries.info/libraries/emon-lib
+#include <ESP8266WiFi.h>  
 #include <PubSubClient.h> 
+#include <ArduinoJson.h> // https://github.com/bblanchon/ArduinoJson/releases/tag/v5.0.7
 
 //atualize SSID e senha WiFi
 const char* ssid = "IBMHackatruckIoT";
@@ -38,7 +39,28 @@ String statusDispositivo;
 
 
 WiFiClient wifiClient;
-PubSubClient client(server, 1883, NULL, wifiClient);
+
+void callback(char* topic, byte* payload, unsigned int payloadLength) {
+  Serial.print("Message arrived [");
+  Serial.print(topic);
+  Serial.print("] ");
+  for (int i = 0; i < payloadLength; i++) {
+    Serial.print((char)payload[i]);
+  }
+  Serial.println();
+
+  // Switch on the LED if an 1 was received as first character
+  if (payload[0] == '1') {
+    digitalWrite(BUILTIN_LED, HIGH);   // Turn the LED on (Note that LOW is the voltage level
+    // but actually the LED is on; this is because
+    // it is acive low on the ESP-01)
+  } else {
+    digitalWrite(BUILTIN_LED, LOW);  // Turn the LED off by making the voltage HIGH
+  }
+  Serial.println("CALLBACK");
+}
+
+PubSubClient client(server, 1883, callback, wifiClient);
 
 
 void setup() {
@@ -86,8 +108,7 @@ void serialPrintResults(String payload, int length) {
   delay(1000);
 }
 
-void loop() {
-
+void mqttConnect() {
   //Checa se a conexão caiu
   if (!!!client.connected()) {
     Serial.print("Reconnecting client to ");
@@ -98,8 +119,10 @@ void loop() {
     }
     Serial.println();
   }
+}
 
-  //Calcula a corrente  
+void prepareData() {
+    //Calcula a corrente  
   Irms = emon1.calcIrms(1480);
   potencia = Irms * rede;
   
@@ -111,7 +134,9 @@ void loop() {
   String IrmsString =  String(TempString);
   dtostrf(potencia, 2, 1, TempString);
   String potenciaString = String(TempString);
+}
 
+void controlPower() {
   // Informa para o usuário se o dispositivo está ligado ou desligado
   if(statusRele) 
   {
@@ -129,7 +154,9 @@ void loop() {
     digitalWrite(porta_rele, HIGH); //Liga rele
     delay(1000);
   }
+}
 
+void publishData() {
 
   // Prepara JSON para IOT Platform
   int length = 0;
@@ -140,21 +167,28 @@ void loop() {
 
   //Função para mostrar os resultados no serial monitor
   serialPrintResults(payload, length);
-
-  /*Função para receber informação do app
-   * getUserInfo(localization, status)
-  */
-  
-  
-  if (client.publish(topic, (char*) payload.c_str())) {
+    
+    if (client.publish(topic, (char*) payload.c_str())) {
     Serial.println("Publish ok");
-    digitalWrite(LED_BUILTIN, LOW);
+    //digitalWrite(LED_BUILTIN, LOW);
     delay(500);
-    digitalWrite(LED_BUILTIN, HIGH);
+    //digitalWrite(LED_BUILTIN, HIGH);
     delay(500);
   } else {
     Serial.println("Publish failed");
     Serial.println(client.state());
   }
+}
+
+void loop() {
+  mqttConnect();
+  prepareData();
+  controlPower();
+  publishData();
+  client.loop();
+  
+  /*Função para receber informação do app
+   * getUserInfo(localization, status)
+  */
 
 }
