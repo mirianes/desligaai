@@ -1,0 +1,22 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'DesligaAi' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for DesligaAi
+
+  pod 'Charts', '3.0.0'
+
+  target 'DesligaAiTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'DesligaAiUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end

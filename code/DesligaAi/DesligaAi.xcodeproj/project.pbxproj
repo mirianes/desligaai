@@ -34,6 +34,7 @@
 		FB81C4CF227A370100DE0BC3 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB81C4CE227A370100DE0BC3 /* ContactTableViewCell.swift */; };
 		FB81C4D7227A7DAD00DE0BC3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB81C4D6227A7DAD00DE0BC3 /* CoreLocation.framework */; };
 		FB81C4DB227A7EB200DE0BC3 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB81C4DA227A7EB200DE0BC3 /* Charts.framework */; };
+		FB87128F227AB526004FEB8A /* TotalConsumptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB87128E227AB526004FEB8A /* TotalConsumptionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		FB81C4D4227A7D8200DE0BC3 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "Pods/../build/Debug-iphoneos/Charts/Charts.framework"; sourceTree = "<group>"; };
 		FB81C4D6227A7DAD00DE0BC3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FB81C4DA227A7EB200DE0BC3 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/DesligaAi-aqklrudimtbkqrezhhivsyoxqiqv/Build/Products/Debug-iphonesimulator/Charts/Charts.framework"; sourceTree = "<group>"; };
+		FB87128E227AB526004FEB8A /* TotalConsumptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TotalConsumptionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 				3F3B25792270CD510070B232 /* AppDelegate.swift */,
 				3F3B257B2270CD510070B232 /* ViewController.swift */,
 				3F3B257D2270CD510070B232 /* Main.storyboard */,
+				FB87128E227AB526004FEB8A /* TotalConsumptionViewController.swift */,
 				FB81C4CC2279FF0100DE0BC3 /* AddressTableViewCell.swift */,
 				FB81C4CA2279ED9500DE0BC3 /* AboutTableViewCell.swift */,
 				FB81C4C82279E9AB00DE0BC3 /* FaqTableViewCell.swift */,
@@ -449,6 +452,7 @@
 				3F21B5C22278DB750005ECF7 /* InfoDeviceViewController.swift in Sources */,
 				3F0554C22270E13D00331F1D /* config.swift in Sources */,
 				3F0554C62270EA0900331F1D /* DispositivosCollectionViewController.swift in Sources */,
+				FB87128F227AB526004FEB8A /* TotalConsumptionViewController.swift in Sources */,
 				FB81C4CD2279FF0100DE0BC3 /* AddressTableViewCell.swift in Sources */,
 				3F3B25AA2270DC960070B232 /* CadastroViewController.swift in Sources */,
 			);
@@ -611,6 +615,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Charts",
 				);
 				INFOPLIST_FILE = DesligaAi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hackatruck.DesligaAi;
 				PRODUCT_NAME = "Desligaí!";
@@ -629,6 +634,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Charts",
 				);
 				INFOPLIST_FILE = DesligaAi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hackatruck.DesligaAi;
 				PRODUCT_NAME = "Desligaí!";

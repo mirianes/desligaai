@@ -18,10 +18,10 @@ class DispositivosCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.dispositivos = [Device(["equipament": "Televisão", "name": "D001", "state": false, "consumption": "127"]),
-                             Device(["equipament": "Geladeira", "name": "D002", "state": false]),
-                             Device(["equipament": "Ar-condicionado", "name": "D003", "state": false]),
-                             Device(["equipament": "TV do quarto", "name": "D004", "state": true, "consumption": "127"])]
+        self.dispositivos = [Device(["equipament": "Televisão", "name": "D001", "state": true, "consumption": "127", "consumptionDay": ["439", "525", "517", "696", "31", "119", "137", "154", "127"], "consumptionMonth": ["489", "535", "507", "66", "310", "19", "177", "124", "127"]]),
+                             Device(["equipament": "Geladeira", "name": "D002", "state": false, "consumptionMonth": ["439", "525", "517", "696", "31", "119", "137", "154", "127"]]),
+                             Device(["equipament": "Ar-condicionado", "name": "D003", "state": false, "consumptionMonth": ["439", "525", "51", "96", "351", "139", "138", "164", "12"]]),
+                             Device(["equipament": "TV do quarto", "name": "D004", "state": true, "consumption": "127", "consumptionMonth": ["439", "525", "517", "696", "31", "119", "137", "154", "127"]])]
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

@@ -1,0 +1,6 @@
+framework module Pods_DesligaAiUITests {
+  umbrella header "Pods-DesligaAiUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

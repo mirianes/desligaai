@@ -562,10 +562,12 @@
                                     <segment title="Consumo Mensal"/>
                                 </segments>
                                 <color key="tintColor" red="0.08235294118" green="0.14117647059999999" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="setGraphType:" destination="t44-YH-qcv" eventType="valueChanged" id="Rlv-9H-ROj"/>
+                                </connections>
                             </segmentedControl>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-nu-4Ya">
-                                <rect key="frame" x="24" y="288" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-nu-4Ya" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="24" y="288" width="327" height="327"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -573,10 +575,14 @@
                         <constraints>
                             <constraint firstItem="Pid-Qn-0rc" firstAttribute="leading" secondItem="MtE-gj-hku" secondAttribute="leadingMargin" constant="8" id="5gO-xz-ZMB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Pid-Qn-0rc" secondAttribute="trailing" constant="8" id="Ege-d6-gya"/>
+                            <constraint firstItem="6wC-nu-4Ya" firstAttribute="top" secondItem="Pid-Qn-0rc" secondAttribute="bottom" constant="22" id="G5k-nS-Rbo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qtc-HC-fZX" secondAttribute="trailing" constant="8" id="RD3-Qq-5fu"/>
                             <constraint firstItem="qtc-HC-fZX" firstAttribute="top" secondItem="qgc-ub-Gge" secondAttribute="bottom" constant="40" id="Rwc-tv-BUB"/>
                             <constraint firstAttribute="bottom" secondItem="qtc-HC-fZX" secondAttribute="bottom" constant="451" id="atk-B2-sct"/>
+                            <constraint firstItem="Bim-bU-foL" firstAttribute="top" secondItem="6wC-nu-4Ya" secondAttribute="bottom" constant="8" id="mh4-Ge-bLH"/>
                             <constraint firstItem="Pid-Qn-0rc" firstAttribute="top" secondItem="qtc-HC-fZX" secondAttribute="bottom" constant="22" id="nYF-k2-HqU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6wC-nu-4Ya" secondAttribute="trailing" constant="8" id="nyt-eH-tJO"/>
+                            <constraint firstItem="6wC-nu-4Ya" firstAttribute="leading" secondItem="MtE-gj-hku" secondAttribute="leadingMargin" constant="8" id="sZ7-SF-xJf"/>
                             <constraint firstItem="qtc-HC-fZX" firstAttribute="leading" secondItem="MtE-gj-hku" secondAttribute="leadingMargin" constant="8" id="ySj-g0-lA1"/>
                         </constraints>
                     </view>
@@ -584,8 +590,10 @@
                         <barButtonItem key="backBarButtonItem" title="Voltar" id="RIV-6x-UWy"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="choiceSegmentedControl" destination="Pid-Qn-0rc" id="FuN-Ik-5Ke"/>
                         <outlet property="consumptionLabel" destination="TCh-3C-vmK" id="wR1-To-eRm"/>
                         <outlet property="deviceLabel" destination="51L-pR-MAq" id="bS8-oI-gN7"/>
+                        <outlet property="lineChartView" destination="6wC-nu-4Ya" id="dxY-Aw-Azs"/>
                         <outlet property="stateLabel" destination="9f1-2n-kA8" id="F57-da-ycU"/>
                     </connections>
                 </viewController>
@@ -596,7 +604,7 @@
         <!--Consumo Total-->
         <scene sceneID="UsK-xs-Hdn">
             <objects>
-                <viewController id="7KR-Hx-MtX" sceneMemberID="viewController">
+                <viewController id="7KR-Hx-MtX" customClass="TotalConsumptionViewController" customModule="Desligaí_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vWI-gW-LLE"/>
                         <viewControllerLayoutGuide type="bottom" id="8w8-2w-Sps"/>
@@ -604,9 +612,19 @@
                     <view key="view" contentMode="scaleToFill" id="86K-WX-AC6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Go0-F7-c1I" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="82" width="343" height="514"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Consumo Total" id="yqg-FY-ALP"/>
+                    <connections>
+                        <outlet property="lineChartView" destination="Go0-F7-c1I" id="57Y-Fe-ozY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Cx-Ne-1pj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -626,7 +644,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KFR-cU-AQi" id="3VM-fi-Qxn">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Salvar Endereço" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgn-LH-6hb">
