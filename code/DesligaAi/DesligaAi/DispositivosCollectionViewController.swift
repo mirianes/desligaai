@@ -2,109 +2,116 @@
 //  DispositivosCollectionViewController.swift
 //  DesligaAi
 //
-//  Created by student on 24/04/19.
+//  Created by Alícia Reis on 24/04/19.
 //  Copyright © 2019 desligaAi. All rights reserved.
 //
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = "dispositivoCell"
 
 class DispositivosCollectionViewController: UICollectionViewController {
-
     
-    var dispositivos = [Dispositivo]()
+    var dispositivos = [Device]()
+    var dispositivoSelected: Device?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.dispositivos = DispositivoDao.getDispositivo()
+        self.dispositivos = [Device(["equipament": "Televisão", "name": "D001", "state": true, "consumption": "127", "consumptionDay": ["439", "525", "517", "696", "31", "119", "137", "154", "127"], "consumptionMonth": ["489", "535", "507", "66", "310", "19", "177", "124", "127"]]),
+                             Device(["equipament": "Geladeira", "name": "D002", "state": false, "consumptionMonth": ["439", "525", "517", "696", "31", "119", "137", "154", "127"]]),
+                             Device(["equipament": "Ar-condicionado", "name": "D003", "state": false, "consumptionMonth": ["439", "525", "51", "96", "351", "139", "138", "164", "12"]]),
+                             Device(["equipament": "TV do quarto", "name": "D004", "state": true, "consumption": "127", "consumptionMonth": ["439", "525", "517", "696", "31", "119", "137", "154", "127"]])]
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
+        //        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
-
+    
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "deviceDetailsSegue" {
+            if let destination = segue.destination as? InfoDeviceViewController {
+                destination.device = self.dispositivoSelected
+            }
+        }
+     }
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
-
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return dispositivos.count
+        return self.dispositivos.count + 1
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dispositivoCell", for: indexPath)
         
         if let dispositivoCell = cell as? DispositivoCollectionViewCell{
-        
-            let dispositivo = self.dispositivos[indexPath.row]
             
-            dispositivoCell..text = dispositivo.nome
-            dispositivoCell.
-            
-        
-        
+            if indexPath.item == self.dispositivos.count {
+                dispositivoCell.deviceNameLabel.text = "Adicionar Dispositivo"
+                dispositivoCell.deviceIconImageView.image = UIImage(named: "NewDevice")
+            } else {
+                let dispositivo = self.dispositivos[indexPath.item]
+                dispositivoCell.deviceNameLabel.text = dispositivo.equipamentName
+                dispositivoCell.deviceIconImageView.image = UIImage(named: dispositivo.photoImage)
+            }
         }
-    
-        // Configure the cell
-    
+        
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.item == self.dispositivos.count {
+            performSegue(withIdentifier: "newDeviceSegue", sender: self)
+        } else {
+            self.dispositivoSelected = self.dispositivos[indexPath.item]
+            performSegue(withIdentifier: "deviceDetailsSegue", sender: self)
+        }
     }
 
     // MARK: UICollectionViewDelegate
 
     /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
+     // Uncomment this method to specify if the specified item should be highlighted during tracking
+     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+     return true
+     }
+     */
 
     /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
+     // Uncomment this method to specify if the specified item should be selected
+     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+     return true
+     }
+     */
 
     /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
+     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
+     override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
+     return false
+     }
+     
+     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+     return false
+     }
+     
+     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+     
+     }
+     */
 
 }
+
+
+

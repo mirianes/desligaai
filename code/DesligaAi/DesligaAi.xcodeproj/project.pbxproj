@@ -11,6 +11,8 @@
 		3F0554C42270E19D00331F1D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0554C32270E19D00331F1D /* User.swift */; };
 		3F0554C62270EA0900331F1D /* DispositivosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0554C52270EA0900331F1D /* DispositivosCollectionViewController.swift */; };
 		3F0554CA2270EDD700331F1D /* DispositivoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0554C92270EDD700331F1D /* DispositivoCollectionViewCell.swift */; };
+		3F21B5BC2278D1C20005ECF7 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21B5BB2278D1C20005ECF7 /* Device.swift */; };
+		3F21B5C22278DB750005ECF7 /* InfoDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21B5C12278DB750005ECF7 /* InfoDeviceViewController.swift */; };
 		3F3B257A2270CD510070B232 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3B25792270CD510070B232 /* AppDelegate.swift */; };
 		3F3B257C2270CD510070B232 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3B257B2270CD510070B232 /* ViewController.swift */; };
 		3F3B257F2270CD510070B232 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F3B257D2270CD510070B232 /* Main.storyboard */; };
@@ -20,6 +22,19 @@
 		3F3B259A2270CD510070B232 /* DesligaAiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3B25992270CD510070B232 /* DesligaAiUITests.swift */; };
 		3F3B25A82270D52D0070B232 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3B25A72270D52D0070B232 /* LoginViewController.swift */; };
 		3F3B25AA2270DC960070B232 /* CadastroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3B25A92270DC960070B232 /* CadastroViewController.swift */; };
+		82A748146271A67F58D815B0 /* Pods_DesligaAi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C52E4CD99167D9C32164198 /* Pods_DesligaAi.framework */; };
+		8E0D5FFD2DA3F0C11A3A4C93 /* Pods_DesligaAiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4E5992D9C29DA147DDFC8D /* Pods_DesligaAiUITests.framework */; };
+		92C4A960F2FC42CC955A3145 /* Pods_DesligaAiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB571132C32BD2B3295E12A /* Pods_DesligaAiTests.framework */; };
+		FB81C4C12279268B00DE0BC3 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB81C4C02279268B00DE0BC3 /* TabBarViewController.swift */; };
+		FB81C4C32279316C00DE0BC3 /* NovoDispositivoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB81C4C22279316C00DE0BC3 /* NovoDispositivoViewController.swift */; };
+		FB81C4C72279E4C100DE0BC3 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB81C4C62279E4C100DE0BC3 /* SettingsTableViewController.swift */; };
+		FB81C4C92279E9AB00DE0BC3 /* FaqTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB81C4C82279E9AB00DE0BC3 /* FaqTableViewCell.swift */; };
+		FB81C4CB2279ED9500DE0BC3 /* AboutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB81C4CA2279ED9500DE0BC3 /* AboutTableViewCell.swift */; };
+		FB81C4CD2279FF0100DE0BC3 /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB81C4CC2279FF0100DE0BC3 /* AddressTableViewCell.swift */; };
+		FB81C4CF227A370100DE0BC3 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB81C4CE227A370100DE0BC3 /* ContactTableViewCell.swift */; };
+		FB81C4D7227A7DAD00DE0BC3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB81C4D6227A7DAD00DE0BC3 /* CoreLocation.framework */; };
+		FB81C4DB227A7EB200DE0BC3 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB81C4DA227A7EB200DE0BC3 /* Charts.framework */; };
+		FB87128F227AB526004FEB8A /* TotalConsumptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB87128E227AB526004FEB8A /* TotalConsumptionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,11 +55,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E67AB3113D98869390F0E3C /* Pods-DesligaAiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesligaAiUITests.release.xcconfig"; path = "Target Support Files/Pods-DesligaAiUITests/Pods-DesligaAiUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2B4E5992D9C29DA147DDFC8D /* Pods_DesligaAiUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DesligaAiUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3078B8A772F8B6CE27E52040 /* Pods-DesligaAiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesligaAiUITests.debug.xcconfig"; path = "Target Support Files/Pods-DesligaAiUITests/Pods-DesligaAiUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3F0554C12270E13D00331F1D /* config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		3F0554C32270E19D00331F1D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3F0554C52270EA0900331F1D /* DispositivosCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispositivosCollectionViewController.swift; sourceTree = "<group>"; };
 		3F0554C92270EDD700331F1D /* DispositivoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispositivoCollectionViewCell.swift; sourceTree = "<group>"; };
-		3F3B25762270CD510070B232 /* DesligaAi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesligaAi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F21B5BB2278D1C20005ECF7 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		3F21B5C12278DB750005ECF7 /* InfoDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDeviceViewController.swift; sourceTree = "<group>"; };
+		3F3B25762270CD510070B232 /* Desligaí!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Desligaí!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F3B25792270CD510070B232 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F3B257B2270CD510070B232 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3F3B257E2270CD510070B232 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -59,6 +79,23 @@
 		3F3B259B2270CD510070B232 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F3B25A72270D52D0070B232 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3F3B25A92270DC960070B232 /* CadastroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CadastroViewController.swift; sourceTree = "<group>"; };
+		5C52E4CD99167D9C32164198 /* Pods_DesligaAi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DesligaAi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FB571132C32BD2B3295E12A /* Pods_DesligaAiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DesligaAiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		81CCBAB5A29E694B5DE84B20 /* Pods-DesligaAi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesligaAi.debug.xcconfig"; path = "Target Support Files/Pods-DesligaAi/Pods-DesligaAi.debug.xcconfig"; sourceTree = "<group>"; };
+		96653D805B2E314095D37779 /* Pods-DesligaAi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesligaAi.release.xcconfig"; path = "Target Support Files/Pods-DesligaAi/Pods-DesligaAi.release.xcconfig"; sourceTree = "<group>"; };
+		BBFADE09B99BA16DB2AD8F8E /* Pods-DesligaAiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesligaAiTests.release.xcconfig"; path = "Target Support Files/Pods-DesligaAiTests/Pods-DesligaAiTests.release.xcconfig"; sourceTree = "<group>"; };
+		C93D372BCBDBB10CB32317FB /* Pods-DesligaAiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesligaAiTests.debug.xcconfig"; path = "Target Support Files/Pods-DesligaAiTests/Pods-DesligaAiTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FB81C4C02279268B00DE0BC3 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		FB81C4C22279316C00DE0BC3 /* NovoDispositivoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NovoDispositivoViewController.swift; sourceTree = "<group>"; };
+		FB81C4C62279E4C100DE0BC3 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		FB81C4C82279E9AB00DE0BC3 /* FaqTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaqTableViewCell.swift; sourceTree = "<group>"; };
+		FB81C4CA2279ED9500DE0BC3 /* AboutTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTableViewCell.swift; sourceTree = "<group>"; };
+		FB81C4CC2279FF0100DE0BC3 /* AddressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTableViewCell.swift; sourceTree = "<group>"; };
+		FB81C4CE227A370100DE0BC3 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		FB81C4D4227A7D8200DE0BC3 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "Pods/../build/Debug-iphoneos/Charts/Charts.framework"; sourceTree = "<group>"; };
+		FB81C4D6227A7DAD00DE0BC3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FB81C4DA227A7EB200DE0BC3 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/DesligaAi-aqklrudimtbkqrezhhivsyoxqiqv/Build/Products/Debug-iphonesimulator/Charts/Charts.framework"; sourceTree = "<group>"; };
+		FB87128E227AB526004FEB8A /* TotalConsumptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TotalConsumptionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +103,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB81C4DB227A7EB200DE0BC3 /* Charts.framework in Frameworks */,
+				FB81C4D7227A7DAD00DE0BC3 /* CoreLocation.framework in Frameworks */,
+				82A748146271A67F58D815B0 /* Pods_DesligaAi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92C4A960F2FC42CC955A3145 /* Pods_DesligaAiTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E0D5FFD2DA3F0C11A3A4C93 /* Pods_DesligaAiUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,13 +135,15 @@
 				3F3B258D2270CD510070B232 /* DesligaAiTests */,
 				3F3B25982270CD510070B232 /* DesligaAiUITests */,
 				3F3B25772270CD510070B232 /* Products */,
+				639E7F68BFA57E2FD108654B /* Pods */,
+				73737B7DF9C30627FCA10A0C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		3F3B25772270CD510070B232 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3F3B25762270CD510070B232 /* DesligaAi.app */,
+				3F3B25762270CD510070B232 /* Desligaí!.app */,
 				3F3B258A2270CD510070B232 /* DesligaAiTests.xctest */,
 				3F3B25952270CD510070B232 /* DesligaAiUITests.xctest */,
 			);
@@ -112,8 +156,18 @@
 				3F3B25792270CD510070B232 /* AppDelegate.swift */,
 				3F3B257B2270CD510070B232 /* ViewController.swift */,
 				3F3B257D2270CD510070B232 /* Main.storyboard */,
+				FB87128E227AB526004FEB8A /* TotalConsumptionViewController.swift */,
+				FB81C4CC2279FF0100DE0BC3 /* AddressTableViewCell.swift */,
+				FB81C4CA2279ED9500DE0BC3 /* AboutTableViewCell.swift */,
+				FB81C4C82279E9AB00DE0BC3 /* FaqTableViewCell.swift */,
+				FB81C4C62279E4C100DE0BC3 /* SettingsTableViewController.swift */,
+				FB81C4CE227A370100DE0BC3 /* ContactTableViewCell.swift */,
+				FB81C4C22279316C00DE0BC3 /* NovoDispositivoViewController.swift */,
+				FB81C4C02279268B00DE0BC3 /* TabBarViewController.swift */,
+				3F21B5BB2278D1C20005ECF7 /* Device.swift */,
 				3F0554C92270EDD700331F1D /* DispositivoCollectionViewCell.swift */,
 				3F0554C52270EA0900331F1D /* DispositivosCollectionViewController.swift */,
+				3F21B5C12278DB750005ECF7 /* InfoDeviceViewController.swift */,
 				3F3B25A92270DC960070B232 /* CadastroViewController.swift */,
 				3F0554C12270E13D00331F1D /* config.swift */,
 				3F0554C32270E19D00331F1D /* User.swift */,
@@ -143,6 +197,32 @@
 			path = DesligaAiUITests;
 			sourceTree = "<group>";
 		};
+		639E7F68BFA57E2FD108654B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				81CCBAB5A29E694B5DE84B20 /* Pods-DesligaAi.debug.xcconfig */,
+				96653D805B2E314095D37779 /* Pods-DesligaAi.release.xcconfig */,
+				C93D372BCBDBB10CB32317FB /* Pods-DesligaAiTests.debug.xcconfig */,
+				BBFADE09B99BA16DB2AD8F8E /* Pods-DesligaAiTests.release.xcconfig */,
+				3078B8A772F8B6CE27E52040 /* Pods-DesligaAiUITests.debug.xcconfig */,
+				1E67AB3113D98869390F0E3C /* Pods-DesligaAiUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		73737B7DF9C30627FCA10A0C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FB81C4DA227A7EB200DE0BC3 /* Charts.framework */,
+				FB81C4D6227A7DAD00DE0BC3 /* CoreLocation.framework */,
+				FB81C4D4227A7D8200DE0BC3 /* Charts.framework */,
+				5C52E4CD99167D9C32164198 /* Pods_DesligaAi.framework */,
+				5FB571132C32BD2B3295E12A /* Pods_DesligaAiTests.framework */,
+				2B4E5992D9C29DA147DDFC8D /* Pods_DesligaAiUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -150,9 +230,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F3B259E2270CD510070B232 /* Build configuration list for PBXNativeTarget "DesligaAi" */;
 			buildPhases = (
+				982EFA3821D413ABA4FE4D92 /* [CP] Check Pods Manifest.lock */,
 				3F3B25722270CD510070B232 /* Sources */,
 				3F3B25732270CD510070B232 /* Frameworks */,
 				3F3B25742270CD510070B232 /* Resources */,
+				DE831C6199E7E770249A7384 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -160,13 +242,14 @@
 			);
 			name = DesligaAi;
 			productName = DesligaAi;
-			productReference = 3F3B25762270CD510070B232 /* DesligaAi.app */;
+			productReference = 3F3B25762270CD510070B232 /* Desligaí!.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3F3B25892270CD510070B232 /* DesligaAiTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F3B25A12270CD510070B232 /* Build configuration list for PBXNativeTarget "DesligaAiTests" */;
 			buildPhases = (
+				884A9A97623673F1B61D19DE /* [CP] Check Pods Manifest.lock */,
 				3F3B25862270CD510070B232 /* Sources */,
 				3F3B25872270CD510070B232 /* Frameworks */,
 				3F3B25882270CD510070B232 /* Resources */,
@@ -185,6 +268,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F3B25A42270CD510070B232 /* Build configuration list for PBXNativeTarget "DesligaAiUITests" */;
 			buildPhases = (
+				946F7CDDFAF3E0A7B40712F5 /* [CP] Check Pods Manifest.lock */,
 				3F3B25912270CD510070B232 /* Sources */,
 				3F3B25922270CD510070B232 /* Frameworks */,
 				3F3B25932270CD510070B232 /* Resources */,
@@ -211,6 +295,7 @@
 				TargetAttributes = {
 					3F3B25752270CD510070B232 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = K63LWP9N3V;
 						ProvisioningStyle = Automatic;
 					};
 					3F3B25892270CD510070B232 = {
@@ -272,18 +357,103 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		884A9A97623673F1B61D19DE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DesligaAiTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		946F7CDDFAF3E0A7B40712F5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DesligaAiUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		982EFA3821D413ABA4FE4D92 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DesligaAi-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE831C6199E7E770249A7384 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DesligaAi/Pods-DesligaAi-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DesligaAi/Pods-DesligaAi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3F3B25722270CD510070B232 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3F3B25A82270D52D0070B232 /* LoginViewController.swift in Sources */,
+				FB81C4CB2279ED9500DE0BC3 /* AboutTableViewCell.swift in Sources */,
 				3F3B257C2270CD510070B232 /* ViewController.swift in Sources */,
+				FB81C4C12279268B00DE0BC3 /* TabBarViewController.swift in Sources */,
 				3F0554CA2270EDD700331F1D /* DispositivoCollectionViewCell.swift in Sources */,
+				FB81C4C32279316C00DE0BC3 /* NovoDispositivoViewController.swift in Sources */,
+				FB81C4CF227A370100DE0BC3 /* ContactTableViewCell.swift in Sources */,
+				3F21B5BC2278D1C20005ECF7 /* Device.swift in Sources */,
+				FB81C4C72279E4C100DE0BC3 /* SettingsTableViewController.swift in Sources */,
 				3F0554C42270E19D00331F1D /* User.swift in Sources */,
 				3F3B257A2270CD510070B232 /* AppDelegate.swift in Sources */,
+				FB81C4C92279E9AB00DE0BC3 /* FaqTableViewCell.swift in Sources */,
+				3F21B5C22278DB750005ECF7 /* InfoDeviceViewController.swift in Sources */,
 				3F0554C22270E13D00331F1D /* config.swift in Sources */,
 				3F0554C62270EA0900331F1D /* DispositivosCollectionViewController.swift in Sources */,
+				FB87128F227AB526004FEB8A /* TotalConsumptionViewController.swift in Sources */,
+				FB81C4CD2279FF0100DE0BC3 /* AddressTableViewCell.swift in Sources */,
 				3F3B25AA2270DC960070B232 /* CadastroViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,30 +606,45 @@
 		};
 		3F3B259F2270CD510070B232 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81CCBAB5A29E694B5DE84B20 /* Pods-DesligaAi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = K63LWP9N3V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Charts",
+				);
 				INFOPLIST_FILE = DesligaAi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hackatruck.DesligaAi;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Desligaí!";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		3F3B25A02270CD510070B232 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96653D805B2E314095D37779 /* Pods-DesligaAi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = K63LWP9N3V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Charts",
+				);
 				INFOPLIST_FILE = DesligaAi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hackatruck.DesligaAi;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Desligaí!";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		3F3B25A22270CD510070B232 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C93D372BCBDBB10CB32317FB /* Pods-DesligaAiTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -474,6 +659,7 @@
 		};
 		3F3B25A32270CD510070B232 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBFADE09B99BA16DB2AD8F8E /* Pods-DesligaAiTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -488,6 +674,7 @@
 		};
 		3F3B25A52270CD510070B232 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3078B8A772F8B6CE27E52040 /* Pods-DesligaAiUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = DesligaAiUITests/Info.plist;
@@ -501,6 +688,7 @@
 		};
 		3F3B25A62270CD510070B232 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E67AB3113D98869390F0E3C /* Pods-DesligaAiUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = DesligaAiUITests/Info.plist;
