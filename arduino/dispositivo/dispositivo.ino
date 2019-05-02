@@ -38,13 +38,10 @@ float potencia = 0.0;
 char potenciaString[6];
 bool statusRele = false;
 String statusDispositivo = "1";
-<<<<<<< HEAD
 float consumo[60];
 int n_amostra = 0;
 float consumoMedio = 0;
 char consumoMedioString[10];
-=======
->>>>>>> cb404d0e62e32a2d8621f3a4b2348258a68a7d21
 
 
 WiFiClient wifiClient;
@@ -137,13 +134,12 @@ void mqttConnect() {
     } else {
       Serial.println("subscribe to responses FAILED");
     }
-<<<<<<< HEAD
   }
 }
 
 
 void calculaConsumo() {
-  int num = 5;
+  int num = 60;
   consumo[n_amostra] = Irms;
   n_amostra++;
   Serial.println(n_amostra);
@@ -155,7 +151,7 @@ void calculaConsumo() {
       consumoMedio += consumo[i];
     }
     consumoMedio = consumoMedio / num;
-    consumoMedio = consumoMedio * rede * 3,6;
+    consumoMedio = (consumoMedio * rede) / 1000;
   }
 }
 
@@ -176,46 +172,6 @@ void publishData() {
   dtostrf(consumoMedio, 2, 1, TempString);
   String consumoMedioString = String(TempString);
   
-=======
-  }
-}
-
-
-void controlPower() {
-  // Informa para o usuário se o dispositivo está ligado ou desligado
-  if(statusRele) 
-  {
-    statusDispositivo = "1";
-    statusRele = false;
-    digitalWrite(porta_rele, LOW); //Desliga rele
-    delay(1000);
-   
-  } 
-  
-  else 
-  {
-    statusDispositivo = "0";
-    statusRele = true;
-    digitalWrite(porta_rele, HIGH); //Liga rele
-    delay(1000);
-  }
-}
-
-void publishData() {
-
-    //Calcula a corrente  
-  Irms = emon1.calcIrms(1480);
-  potencia = Irms * rede;
-  
-  // Conversao Floats para Strings
-  char TempString[32];  //  array de character temporario
-
-  // dtostrf( [Float variable] , [Minimum SizeBeforePoint] , [sizeAfterPoint] , [WhereToStoreIt] )
-  dtostrf(Irms, 2, 1, TempString);
-  String IrmsString =  String(TempString);
-  dtostrf(potencia, 2, 1, TempString);
-  String potenciaString = String(TempString);
->>>>>>> cb404d0e62e32a2d8621f3a4b2348258a68a7d21
   // Prepara JSON para IOT Platform
   int length = 0;
 
