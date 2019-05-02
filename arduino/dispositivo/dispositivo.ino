@@ -3,6 +3,7 @@
 #include <PubSubClient.h> 
 #include <ArduinoJson.h> // https://github.com/bblanchon/ArduinoJson/releases/tag/v5.0.7
 
+
 //atualize SSID e senha WiFi
 const char* ssid = "IBMHackatruckIoT";
 const char* password = "IOT2017IBM";
@@ -16,7 +17,7 @@ int pino_sct = A0;                // Pino do sensor SCT entrada (analógica) do 
 int porta_rele = D1;              // Controle do rele
 
 //Atualize os valores de Org, device type, device id e token
-#define ORG "mp7emo"
+#define ORG "mf1d9p"
 #define DEVICE_TYPE "nodemcu"
 #define DEVICE_ID "nodemcu09"
 #define TOKEN "12345678"
@@ -25,6 +26,7 @@ int porta_rele = D1;              // Controle do rele
 //broker messagesight server
 char server[] = ORG ".messaging.internetofthings.ibmcloud.com";
 char topic[] = "iot-2/evt/status/fmt/json";
+const char cmdTopic[] = "iot-2/cmd/rele/fmt/json";
 char authMethod[] = "use-token-auth";
 char token[] = TOKEN;
 char clientId[] = "d:" ORG ":" DEVICE_TYPE ":" DEVICE_ID;
@@ -35,7 +37,11 @@ char IrmsString[6];
 float potencia = 0.0;
 char potenciaString[6];
 bool statusRele = false;
-String statusDispositivo;
+String statusDispositivo = "1";
+float consumo[60];
+int n_amostra = 0;
+float consumoMedio = 0;
+char consumoMedioString[10];
 
 
 WiFiClient wifiClient;
@@ -51,11 +57,14 @@ void callback(char* topic, byte* payload, unsigned int payloadLength) {
 
   // Switch on the LED if an 1 was received as first character
   if (payload[0] == '1') {
-    digitalWrite(BUILTIN_LED, HIGH);   // Turn the LED on (Note that LOW is the voltage level
+    digitalWrite(porta_rele, HIGH);   // Turn the LED on (Note that LOW is the voltage level
     // but actually the LED is on; this is because
     // it is acive low on the ESP-01)
+    statusDispositivo = "0";
+    
   } else {
-    digitalWrite(BUILTIN_LED, LOW);  // Turn the LED off by making the voltage HIGH
+    digitalWrite(porta_rele, LOW);  // Turn the LED off by making the voltage HIGH
+    statusDispositivo = "1";
   }
   Serial.println("CALLBACK");
 }
@@ -83,6 +92,8 @@ void setup() {
   emon1.current(pino_sct, 29);
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(porta_rele, OUTPUT);
+
+  mqttConnect();
 }
 
 void serialPrintResults(String payload, int length) {
@@ -99,13 +110,14 @@ void serialPrintResults(String payload, int length) {
   Serial.print(Irms); // Irms
 
   //Calcula e mostra o valor da potencia
-  Serial.print(" Potencia : ");
+  Serial.print("Potencia : ");
   Serial.println(potencia);
+
+  Serial.print("Consumo Medio: ");
+  Serial.println(consumoMedio);
 
   //Serial.print("Status: ");
   //Serial.println(statusDispositivo);
-
-  delay(1000);
 }
 
 void mqttConnect() {
@@ -117,11 +129,34 @@ void mqttConnect() {
       Serial.print(".");
       delay(500);
     }
-    Serial.println();
+    if (client.subscribe(cmdTopic)) {
+      Serial.println("subscribe to responses OK");
+    } else {
+      Serial.println("subscribe to responses FAILED");
+    }
   }
 }
 
-void prepareData() {
+
+void calculaConsumo() {
+  int num = 5;
+  consumo[n_amostra] = Irms;
+  n_amostra++;
+  Serial.println(n_amostra);
+
+  if(n_amostra >= num) {
+    consumoMedio = 0;
+    n_amostra = 0;
+    for(int i = 0; i < num; i++){
+      consumoMedio += consumo[i];
+    }
+    consumoMedio = consumoMedio / num;
+    consumoMedio = consumoMedio * rede * 3,6;
+  }
+}
+
+void publishData() {
+
     //Calcula a corrente  
   Irms = emon1.calcIrms(1480);
   potencia = Irms * rede;
@@ -134,35 +169,14 @@ void prepareData() {
   String IrmsString =  String(TempString);
   dtostrf(potencia, 2, 1, TempString);
   String potenciaString = String(TempString);
-}
-
-void controlPower() {
-  // Informa para o usuário se o dispositivo está ligado ou desligado
-  if(statusRele) 
-  {
-    statusDispositivo = "Ligado";
-    statusRele = false;
-    digitalWrite(porta_rele, LOW); //Desliga rele
-    delay(1000);
-   
-  } 
+  dtostrf(consumoMedio, 2, 1, TempString);
+  String consumoMedioString = String(TempString);
   
-  else 
-  {
-    statusDispositivo = "Desligado";
-    statusRele = true;
-    digitalWrite(porta_rele, HIGH); //Liga rele
-    delay(1000);
-  }
-}
-
-void publishData() {
-
   // Prepara JSON para IOT Platform
   int length = 0;
 
   //Envia o Json 
-  String payload = "{\"d\":{\"corrente\":\"" + String(IrmsString) + "\" , \"potencia\":\"" + String(potenciaString) + "\" , \"status\":\"" + String(statusDispositivo) + "\"}}";
+  String payload = "{\"d\":{\"corrente\":\"" + String(IrmsString) + "\" , \"potencia\":\"" + String(potenciaString) + "\" , \"consumoMedio\":\"" + String(consumoMedioString) + "\", \"status\":\"" + String(statusDispositivo) + "\"}}";
   length = payload.length();
 
   //Função para mostrar os resultados no serial monitor
@@ -181,11 +195,12 @@ void publishData() {
 }
 
 void loop() {
-  mqttConnect();
-  prepareData();
-  controlPower();
+  if(!client.loop()) {
+    mqttConnect();  
+  }
+  calculaConsumo();
   publishData();
-  client.loop();
+  
   
   /*Função para receber informação do app
    * getUserInfo(localization, status)
