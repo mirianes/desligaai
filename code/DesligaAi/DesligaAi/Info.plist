@@ -41,5 +41,16 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Salvar o endereço de casa e verificar quando você está fora de casa para assim desligar os equipamentos habilitados de forma automática</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Ler o código do dispositivo</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string></string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>voip</string>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>

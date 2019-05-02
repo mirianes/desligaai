@@ -2,7 +2,7 @@
 //  Device.swift
 //  DesligaAi
 //
-//  Created by student on 30/04/19.
+//  Created by Miriane Silva on 30/04/19.
 //  Copyright © 2019 desligaAi. All rights reserved.
 //
 
@@ -10,26 +10,38 @@ import Foundation
 
 class Device {
     
-    let equipTextField: String //a qual equipamento está conectado
-    let idTextField: String //aqui armazena o valor do QRCode
-    let estado: Bool
-    let fotoImage: String
-    
+    let id: String //aqui armazena o valor do QRCode
+    let equipamentName: String //a qual equipamento está conectado
+    let name: String
+    let autoOff: Bool
+    let state: Bool
+    let idUser: String
+    let consumption: String
+    let consumptionDay: [String]
+    let consumptionMonth: [String]
+    let photoImage: String
     
     init(_ json: [String: Any]) {
-        self.equipTextField = json["equipamento"] as? String ?? ""
-        self.idTextField = json["nome"] as? String ?? ""
-        self.estado = json["estado"] as? Bool ?? false
-        if estado == true{
-            self.fotoImage = "DeviceLigado"
+        self.id = json["id"] as? String ?? ""
+        self.equipamentName = json["equipament"] as? String ?? ""
+        self.name = json["name"] as? String ?? ""
+        self.autoOff = json["autoOff"] as? Bool ?? false
+        self.state = json["state"] as? Bool ?? false
+        self.idUser = json["idUser"] as? String ?? ""
+        self.consumption = json["consumption"] as? String ?? "0"
+        self.consumptionDay = json["consumptionDay"] as? [String] ?? []
+        self.consumptionMonth = json["consumptionMonth"] as? [String] ?? []
+        
+        if self.state == true{
+            self.photoImage = "DeviceLigado"
+        } else {
+            self.photoImage = "DeviceDesligado"
         }
-        else{
-            self.fotoImage = "DeviceDesligado"}
     }
 }
 
 class DeviceCRUD {
-    static func createDevice(_ body: [String: String], _ callback: @escaping ((Bool) -> Void)) {
+    static func createDevice(_ body: [String: Any], _ callback: @escaping ((Bool) -> Void)) {
         guard let url = URL(string: "\(databaseEndpoint)/desligaAi/device") else {
             print("Error in constructing URL in device create function")
             return

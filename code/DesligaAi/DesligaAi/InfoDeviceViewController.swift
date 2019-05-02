@@ -10,16 +10,27 @@ import UIKit
 
 class InfoDeviceViewController: UIViewController {
 
-    @IBOutlet weak var dispositivoNameLabel: UILabel!
-    @IBOutlet weak var consumoInstLabel: UILabel!
+    @IBOutlet weak var deviceLabel: UILabel!
+    @IBOutlet weak var consumptionLabel: UILabel!
+    @IBOutlet weak var stateLabel: UILabel!
     
-    @IBAction func consumoDiaButton(_ sender: Any) {
-    }
-    @IBAction func consumoMensalButton(_ sender: Any) {
-    }
+    var device: Device?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let title = device?.equipamentName, let name = device?.name, let consuption = device?.consumption, let state = device?.state {
+            self.navigationItem.title = title
+            self.deviceLabel.text = "Conectado ao Dispositivo \(name)"
+            self.consumptionLabel.text = "Consumo Instantâneo \(consuption) kWh"
+            var stateMessage = "Atualmente o equipamento está "
+            if state {
+                stateMessage += "ligado"
+            } else {
+                stateMessage += "desligado"
+            }
+            self.stateLabel.text = stateMessage
+        }
 
         // Do any additional setup after loading the view.
     }
