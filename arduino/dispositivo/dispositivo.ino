@@ -198,11 +198,7 @@ void loop() {
   if(!client.loop()) {
     mqttConnect();  
   }
-<<<<<<< HEAD
   calculaConsumo();
-=======
-  //controlPower();
->>>>>>> cb404d0e62e32a2d8621f3a4b2348258a68a7d21
   publishData();
   
   
