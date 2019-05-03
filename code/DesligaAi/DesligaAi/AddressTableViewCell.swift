@@ -57,7 +57,7 @@ class AddressTableViewCell: UITableViewCell {
                 }
             })
         }
-        
+        self.endEditing(true)
         if let location = self.homeLocation {
             let body = ["adress": "\(location)", "mac": UIDevice.current.identifierForVendor!.uuidString] as [String : Any]
             DeviceCRUD.createDevice(body, { (status) in
