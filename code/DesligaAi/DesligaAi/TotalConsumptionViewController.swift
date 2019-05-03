@@ -30,7 +30,7 @@ class TotalConsumptionViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let body = ["idUser" : "0953FB4C-27DB-4438-B7CD-4B38515D9C9C"]//UIDevice.current.identifierForVendor!.uuidString]
+        let body = ["idUser" : UIDevice.current.identifierForVendor!.uuidString]
         DeviceCRUD.listDevices(body,{ (devices) in
             self.devices = devices
             var length = 0
