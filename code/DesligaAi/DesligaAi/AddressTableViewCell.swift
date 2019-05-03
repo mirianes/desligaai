@@ -21,7 +21,6 @@ class AddressTableViewCell: UITableViewCell {
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var admAreaTextField: UITextField!
     @IBOutlet weak var postalcodeTextField: UITextField!
-    @IBOutlet weak var confirmButton: UIButton!
     
     var homeLocation: CLLocation?
     
@@ -43,5 +42,27 @@ class AddressTableViewCell: UITableViewCell {
         self.cityTextField.isEnabled = true
         self.admAreaTextField.isEnabled = true
         self.postalcodeTextField.isEnabled = true
+    }
+    
+    @IBAction func confirmAddress(_ sender: Any) {
+        if self.addressTextField.isEnabled {
+            let geocoder = CLGeocoder()
+            let address = "\(String(describing: self.addressTextField.text!)), \(String(describing: self.numberTextField.text!)), \(String(describing: self.localityTextField.text!)), \(String(describing: self.cityTextField.text!)) - \(String(describing: self.admAreaTextField.text!)), \(String(describing: self.postalcodeTextField.text!)), Brazil"
+            print(address)
+            geocoder.geocodeAddressString(address, completionHandler: { (placemarks, error) in
+                if error == nil {
+                    self.homeLocation = placemarks?[0].location
+                } else {
+                    print(error.debugDescription)
+                }
+            })
+        }
+        
+        if let location = self.homeLocation {
+            let body = ["adress": "\(location)", "mac": UIDevice.current.identifierForVendor!.uuidString] as [String : Any]
+            DeviceCRUD.createDevice(body, { (status) in
+                print(status)
+            })
+        }
     }
 }

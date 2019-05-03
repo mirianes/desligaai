@@ -26,9 +26,23 @@ class TotalConsumptionViewController: UIViewController {
         self.lineChartView.leftAxis.drawAxisLineEnabled = false
         self.lineChartView.rightAxis.drawGridLinesEnabled = false
         self.lineChartView.rightAxis.drawLabelsEnabled = false
-        
-        self.setChartValues()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let body = ["idUser" : "0953FB4C-27DB-4438-B7CD-4B38515D9C9C"]//UIDevice.current.identifierForVendor!.uuidString]
+        DeviceCRUD.listDevices(body,{ (devices) in
+            self.devices = devices
+            var length = 0
+            var data: [String] = []
+            for device in devices {
+                if device.consumptionMonth.count > length {
+                    length = device.consumptionMonth.count
+                    data = device.consumptionMonth
+                }
+            }
+            self.setChartValues(data)
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,16 +50,10 @@ class TotalConsumptionViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setChartValues () {
-        if self.devices.count > 0 {
-            var length = 0
-            for device in self.devices {
-                if device.consumptionMonth.count > length {
-                    length = device.consumptionMonth.count
-                }
-            }
-            let timesInterval = (0..<length).map({ (item) -> TimeInterval in
-                let newDate = Calendar.current.date(byAdding: .day, value: item - 30, to: Date.init())
+    func setChartValues (_ data: [String]) {
+        if data.count > 0 {
+            let timesInterval = (0..<data.count).map({ (item) -> TimeInterval in
+                let newDate = Calendar.current.date(byAdding: .day, value: item + 1 - data.count, to: Date.init())
                 return (newDate?.timeIntervalSince1970)!
             })
             let referenceTimeInterval: TimeInterval = timesInterval.min()!
@@ -59,24 +67,23 @@ class TotalConsumptionViewController: UIViewController {
             
             let xValuesNumberFormatter = LineChartFormatter.init(referenceTimeInterval, dateFormatter: formatter)
             
-            for device in self.devices {
-                var values = [ChartDataEntry]()
-                for item in (0..<length) {
-                    let timeInterval = Date.init().timeIntervalSince1970
-                    let xValue = (timesInterval[item] - timeInterval) / (3600*24)
-                    let yValue = device.consumptionMonth[item]
-                    let entry = ChartDataEntry(x: xValue, y: Double(yValue)!)
-                    values.append(entry)
-                }
-                
-                self.lineChartView.xAxis.valueFormatter = xValuesNumberFormatter
-                
-                let set = LineChartDataSet(values: values, label: device.equipamentName)
-                set.drawCirclesEnabled = false
-                set.mode = .cubicBezier
-                let chartData = LineChartData(dataSet: set)
-                self.lineChartView.data = chartData
+            var values = [ChartDataEntry]()
+            
+            for item in (0..<data.count) {
+                let timeInterval = Date.init().timeIntervalSince1970
+                let xValue = (timesInterval[item] - timeInterval) / (3600*24)
+                let yValue = Double(data[item])!
+                let entry = ChartDataEntry(x: xValue, y: yValue)
+                values.append(entry)
             }
+            
+            self.lineChartView.xAxis.valueFormatter = xValuesNumberFormatter
+            
+            let set = LineChartDataSet(values: values, label: "Consumo Mensal")
+            set.drawCirclesEnabled = false
+            set.mode = .cubicBezier
+            let chartData = LineChartData(dataSet: set)
+            self.lineChartView.data = chartData
         }
     }
     

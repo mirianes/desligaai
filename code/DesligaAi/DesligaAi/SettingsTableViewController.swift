@@ -18,14 +18,14 @@ class SettingsTableViewController: UITableViewController, CLLocationManagerDeleg
     public var homeLocation: CLLocation?
     var geocoder = CLGeocoder()
     
-    var questions = ["Posso controlar o mesmo dispositivo a partir de diferentes celulares?",
-                     "Quanto de energia é consumido para o funcionamento do dispositivo?",
+    var questions = ["Quanto de energia é consumido para o funcionamento do dispositivo?",
                      "Como cadastrar um novo dispositivo? O que é QR Code?",
-                     "Posso alterar a distância máxima entre o dispositivo e meu iPhone para receber a notificação de desligamento?"]
-    var answers = ["",
-                   "O sistema de alimentação da placa e o sistema de alimentação do eletrodoméstico são separados. Logo o dispositivo não afeta a medição de energia, pois a medição ocorre somente no sistema de alimentação do eletrodoméstico.",
+                     "Posso alterar a distância máxima entre o dispositivo e meu iPhone para receber a notificação de desligamento?",
+                     "Posso controlar o mesmo dispositivo a partir de diferentes celulares?"]
+    var answers = ["O sistema de alimentação da placa e o sistema de alimentação do eletrodoméstico são separados. Logo o dispositivo não afeta a medição de energia, pois a medição ocorre somente no sistema de alimentação do eletrodoméstico.",
                    "Para cadastrar um novo dispositivo basta clicar no botão de '+' na tela inicial do Desligaí! e utilizar o própio aplicativo para ler o código QR localizado no dispositivo. O código QR (ou QR Code) funciona como um código de barras, associando um identificador único para cada dispositivo. Dessa forma, somente você terá acesso aos dados de seu dispositivo.",
-                   "Por enquanto, não! Nessa fase do projeto, o Desligaí! configura automaticamente essa distância para 100 metros."]
+                   "Por enquanto, não! Nessa fase do projeto, o Desligaí! configura automaticamente essa distância para 100 metros.",
+                   "Por enquanto, não! Seria necessário termos a função de cadastro de usuário, o que ainda não existe no Desligaí!."]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,11 +113,11 @@ class SettingsTableViewController: UITableViewController, CLLocationManagerDeleg
             }
         } else if (self.selectedCell as? FaqTableViewCell) != nil && indexPath.row == 1 {
             if dateCellExpanded {
-                return 500
+                return 700
             }
         } else if (self.selectedCell as? AboutTableViewCell) != nil && indexPath.row == 2 {
             if dateCellExpanded {
-                return 150
+                return 170
             }
         } else if indexPath.row == 3 {
             return 120
@@ -149,7 +149,7 @@ class SettingsTableViewController: UITableViewController, CLLocationManagerDeleg
             if let aboutCell = cell as? AboutTableViewCell {
                 aboutCell.arrowImage.image = #imageLiteral(resourceName: "arrowDown")
                 aboutCell.titleLabel.text = "Sobre o Desligaí!"
-                aboutCell.aboutLabel.text = "O Desligaí! surgiu no projeto do curso presencial do HackaTruck Maker Space e tem como objetivo monitorar o consumo de energia dos equipamentos elétricos da casa e ajudar a reduzir os gastos com energia.\nNossa equipe é composta por cinco integrantes: Alícia Reis, Douglas Tavares, Matheus Branco, Miriane Silva e Paulo Matheus."
+                aboutCell.aboutLabel.text = "O Desligaí! surgiu no projeto do curso presencial do HackaTruck Maker Space e tem como objetivo monitorar o consumo de energia dos equipamentos elétricos da casa e ajudar a reduzir os gastos com energia.\nNossa equipe é composta por cinco integrantes: Alícia Reis, Douglas Tavares, Matheus Branco, Miriane Silva e Paulo Matheus.\n"
             }
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
@@ -167,10 +167,10 @@ class SettingsTableViewController: UITableViewController, CLLocationManagerDeleg
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if locations.count > 0 {
-            if let currentLocation = locations.last {
-                if (self.homeLocation == nil) {
-                    self.homeLocation = CLLocation()
-                    self.homeLocation = currentLocation
+            if let currentLocation = locations.last, let addressCell = self.selectedCell as? AddressTableViewCell {
+                if (addressCell.homeLocation == nil) {
+                    addressCell.homeLocation = CLLocation()
+                    addressCell.homeLocation = currentLocation
                     self.makeAddress()
                 }
             }
@@ -178,40 +178,23 @@ class SettingsTableViewController: UITableViewController, CLLocationManagerDeleg
     }
     
     func makeAddress() {
-        geocoder.reverseGeocodeLocation(self.homeLocation!, completionHandler: { (placemarks, error) in
-            if error == nil {
-                let firstLocation = placemarks?[0]
-                if let address = firstLocation?.thoroughfare, let number = firstLocation?.subThoroughfare, let city = firstLocation?.locality, let locality = firstLocation?.subLocality, let administrativeArea = firstLocation?.administrativeArea, let postalcode = firstLocation?.postalCode, let addressCell = self.selectedCell as? AddressTableViewCell {
-                    addressCell.addressTextField.text = address
-                    addressCell.numberTextField.text = number
-                    addressCell.cityTextField.text = city
-                    addressCell.localityTextField.text = locality
-                    addressCell.admAreaTextField.text = administrativeArea
-                    addressCell.postalcodeTextField.text = postalcode
-                }
-            } else {
-                print(error.debugDescription)
-            }
-        })
-    }
-    
-    @IBAction func confirmAddress(_ sender: Any) {
         if let addressCell = self.selectedCell as? AddressTableViewCell {
-            if addressCell.addressTextField.isEnabled {
-                let geocoder = CLGeocoder()
-                let address = "\(String(describing: addressCell.addressTextField.text!)), \(String(describing: addressCell.numberTextField.text!)), \(String(describing: addressCell.localityTextField.text!)), \(String(describing: addressCell.cityTextField.text!)) - \(String(describing: addressCell.admAreaTextField.text!)), \(String(describing: addressCell.postalcodeTextField.text!)), Brazil"
-                
-                geocoder.geocodeAddressString(address, completionHandler: { (placemarks, error) in
-                    if error == nil {
-                        self.homeLocation = placemarks?[0].location
-                    } else {
-                        print(error.debugDescription)
+            geocoder.reverseGeocodeLocation(addressCell.homeLocation!, completionHandler: { (placemarks, error) in
+                if error == nil {
+                    let firstLocation = placemarks?[0]
+                    if let address = firstLocation?.thoroughfare, let number = firstLocation?.subThoroughfare, let city = firstLocation?.locality, let locality = firstLocation?.subLocality, let administrativeArea = firstLocation?.administrativeArea, let postalcode = firstLocation?.postalCode {
+                        addressCell.addressTextField.text = address
+                        addressCell.numberTextField.text = number
+                        addressCell.cityTextField.text = city
+                        addressCell.localityTextField.text = locality
+                        addressCell.admAreaTextField.text = administrativeArea
+                        addressCell.postalcodeTextField.text = postalcode
                     }
-                })
-            }
+                } else {
+                    print(error.debugDescription)
+                }
+            })
         }
-        
-        // Salvar homelocation no banco
     }
     
     func makeBoldText(_ question: String, _ answer: String) -> NSMutableAttributedString {
@@ -219,7 +202,7 @@ class SettingsTableViewController: UITableViewController, CLLocationManagerDeleg
         let attrs = [NSFontAttributeName : UIFont.boldSystemFont(ofSize: 14)]
         let attributedString = NSMutableAttributedString(string:boldText, attributes:attrs)
         
-        let normalText = "    \(answer)"
+        let normalText = "\(answer)"
         let normalString = NSMutableAttributedString(string:normalText)
         
         attributedString.append(normalString)

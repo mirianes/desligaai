@@ -615,7 +615,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Charts",
 				);
 				INFOPLIST_FILE = DesligaAi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hackatruck.DesligaAi;
 				PRODUCT_NAME = "Desligaí!";
@@ -634,7 +634,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Charts",
 				);
 				INFOPLIST_FILE = DesligaAi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hackatruck.DesligaAi;
 				PRODUCT_NAME = "Desligaí!";

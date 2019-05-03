@@ -25,13 +25,13 @@ class TabBarViewController: UITabBarController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let barViewControllers = segue.destination as? UITabBarController, let destination = barViewControllers.viewControllers?[0] as? TotalConsumptionViewController {
-            print(destination)
-            if let originBarView = segue.source as? UITabBarController, let origin = originBarView.viewControllers?[1] as? DispositivosCollectionViewController {
-                destination.devices = origin.dispositivos
-            }
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let barViewControllers = segue.destination as? UITabBarController, let destination = barViewControllers.viewControllers?[0] as? TotalConsumptionViewController {
+//            print(destination)
+//            if let originBarView = segue.source as? UITabBarController, let origin = originBarView.viewControllers?[1] as? DispositivosCollectionViewController {
+//                destination.devices = origin.dispositivos
+//            }
+//        }
+//    }
 
 }

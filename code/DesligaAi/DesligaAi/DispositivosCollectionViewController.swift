@@ -7,21 +7,58 @@
 //
 
 import UIKit
+import UserNotifications
 
 private let reuseIdentifier = "dispositivoCell"
 
-class DispositivosCollectionViewController: UICollectionViewController {
+class DispositivosCollectionViewController: UICollectionViewController, UNUserNotificationCenterDelegate {
     
     var dispositivos = [Device]()
     var dispositivoSelected: Device?
     
+    var notificationCenter: UNUserNotificationCenter?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.dispositivos = [Device(["equipament": "Televisão", "name": "D001", "state": true, "consumption": "127", "consumptionDay": ["439", "525", "517", "696", "31", "119", "137", "154", "127"], "consumptionMonth": ["489", "535", "507", "66", "310", "19", "177", "124", "127"]]),
-                             Device(["equipament": "Geladeira", "name": "D002", "state": false, "consumptionMonth": ["439", "525", "517", "696", "31", "119", "137", "154", "127"]]),
-                             Device(["equipament": "Ar-condicionado", "name": "D003", "state": false, "consumptionMonth": ["439", "525", "51", "96", "351", "139", "138", "164", "12"]]),
-                             Device(["equipament": "TV do quarto", "name": "D004", "state": true, "consumption": "127", "consumptionMonth": ["439", "525", "517", "696", "31", "119", "137", "154", "127"]])]
+        let body = ["idUser" : "0953FB4C-27DB-4438-B7CD-4B38515D9C9C"]//UIDevice.current.identifierForVendor!.uuidString]
+        DeviceCRUD.listDevices(body,{ (devices) in
+            self.dispositivos = devices
+            self.collectionView?.reloadData()
+        })
+        
+        self.notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter?.delegate = self
+        
+        let options: UNAuthorizationOptions = [.alert, .sound]
+        self.notificationCenter?.requestAuthorization(options: options) { (granted, error) in
+            if !granted {
+                print("Permission not granted")
+            } else {
+                print("Permission granted")
+            }
+        }
+        
+        let content = UNMutableNotificationContent()
+        content.title = "DesligaAí"
+        content.body = "Você esqueceu um aparelho ligado que estava habilitado para ser desligado automaticamente, então o desliguei."
+        content.sound = UNNotificationSound.default()
+        
+        let date = Date(timeIntervalSinceNow: 120)
+        let triggerDate = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second,], from: date)
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: true)
+        
+        let identifier = "ExitHome"
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        notificationCenter?.add(request, withCompletionHandler: { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+                // Something went wrong
+            } else {
+                self.turnOff()
+            }
+        })
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -30,6 +67,13 @@ class DispositivosCollectionViewController: UICollectionViewController {
         //        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         // Do any additional setup after loading the view.
+    }
+    
+    func turnOff() {
+        let body = ["payload": 1]
+        DeviceCRUD.turnOffDevice(body, {(state) in
+            print(state)
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -75,9 +119,17 @@ class DispositivosCollectionViewController: UICollectionViewController {
         if indexPath.item == self.dispositivos.count {
             performSegue(withIdentifier: "newDeviceSegue", sender: self)
         } else {
-            self.dispositivoSelected = self.dispositivos[indexPath.item]
-            performSegue(withIdentifier: "deviceDetailsSegue", sender: self)
+            DeviceCRUD.getConsumption([:], { (result) in
+                self.dispositivoSelected = self.dispositivos[indexPath.item]
+                self.dispositivoSelected?.consumption = Double(result) ?? 125.7
+                print("Segundo \(String(describing: self.dispositivoSelected?.consumption))")
+                self.performSegue(withIdentifier: "deviceDetailsSegue", sender: self)
+                print("Result \(result)")
+            })
         }
+    }
+    
+    @IBAction func backToHome(segue: UIStoryboardSegue){
     }
 
     // MARK: UICollectionViewDelegate

@@ -22,19 +22,6 @@ class InfoDeviceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let title = device?.equipamentName, let name = device?.name, let consuption = device?.consumption, let state = device?.state {
-            self.navigationItem.title = title
-            self.deviceLabel.text = "Conectado ao Dispositivo \(name)"
-            self.consumptionLabel.text = "Consumo Instantâneo \(consuption) kWh"
-            var stateMessage = "Atualmente o equipamento está "
-            if state {
-                stateMessage += "ligado"
-            } else {
-                stateMessage += "desligado"
-            }
-            self.stateLabel.text = stateMessage
-        }
-        
         self.lineChartView.chartDescription?.enabled = false
         self.lineChartView.xAxis.drawGridLinesEnabled = false
         self.lineChartView.xAxis.labelPosition = .bottom
@@ -53,6 +40,20 @@ class InfoDeviceViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if let title = device?.equipamentName, let name = device?.name, let consuption = device?.consumption, let state = device?.state {
+            self.navigationItem.title = title
+            self.deviceLabel.text = "Conectado ao Dispositivo \(name)"
+            self.consumptionLabel.text = "Consumo Instantâneo \(consuption) kWh"
+            var stateMessage = "Atualmente o equipamento está "
+            if state {
+                stateMessage += "ligado"
+            } else {
+                stateMessage += "desligado"
+            }
+            self.stateLabel.text = stateMessage
+        } else {
+            self.reloadInputViews()
+        }
         self.lineChartView.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
     }
 
@@ -107,7 +108,6 @@ class InfoDeviceViewController: UIViewController {
         if data.count > 0 {
             let timesInterval = (0..<data.count).map({ (item) -> TimeInterval in
                 let newDate = Calendar.current.date(byAdding: .day, value: item + 1 - data.count, to: Date.init())
-                print(newDate)
                 return (newDate?.timeIntervalSince1970)!
             })
             let referenceTimeInterval: TimeInterval = timesInterval.min()!

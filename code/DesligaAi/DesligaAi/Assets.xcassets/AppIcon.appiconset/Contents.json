@@ -3,19 +3,19 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "DesligaAi!-Icon.png",
+      "filename" : "oie_352141V7bQTPSE.png",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "DesligaAi!-5.png",
+      "filename" : "oie_352141V7bQTPSE-2.png",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "DesligaAi!-4.png",
+      "filename" : "oie_352141V7bQTPSE-3.png",
       "scale" : "2x"
     },
     {
@@ -26,7 +26,7 @@
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "DesligaAi!-2.png",
+      "filename" : "oie_352141V7bQTPSE-4.png",
       "scale" : "2x"
     },
     {
@@ -37,7 +37,7 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "DesligaAi!-3.png",
+      "filename" : "oie_352141V7bQTPSE-5.png",
       "scale" : "2x"
     },
     {
@@ -89,6 +89,11 @@
       "idiom" : "ipad",
       "size" : "83.5x83.5",
       "scale" : "2x"
+    },
+    {
+      "idiom" : "ios-marketing",
+      "size" : "1024x1024",
+      "scale" : "1x"
     }
   ],
   "info" : {

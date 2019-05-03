@@ -68,7 +68,6 @@ class NovoDispositivoViewController: UIViewController, AVCaptureMetadataOutputOb
         let captureMetadataOutput = AVCaptureMetadataOutput()
         captureSession?.addOutput(captureMetadataOutput)
         captureMetadataOutput.metadataObjectTypes = captureMetadataOutput.availableMetadataObjectTypes
-        print(captureMetadataOutput.availableMetadataObjectTypes)
         captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         captureSession?.startRunning()
         
@@ -84,10 +83,8 @@ class NovoDispositivoViewController: UIViewController, AVCaptureMetadataOutputOb
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         for data in metadataObjects {
             let metaData = data as! AVMetadataObject
-            print(metaData.description)
             let transformed = videoPreviewLayer?.transformedMetadataObject(for: metaData) as? AVMetadataMachineReadableCodeObject
             if let unwraped = transformed {
-                print(unwraped.stringValue)
                 self.newDevice["id"] = unwraped.stringValue
                 self.readSuccess()
                 self.performSelector(onMainThread: #selector(stopReading), with: nil, waitUntilDone: false)
@@ -105,15 +102,24 @@ class NovoDispositivoViewController: UIViewController, AVCaptureMetadataOutputOb
         self.cameraImageView.isHidden = true
     }
     
+    func singupSuccess() {
+        performSegue(withIdentifier: "newDeviceSuccess", sender: self)
+        let alert: UIAlertController = UIAlertController(title: "Alerta", message: "Dispositivo cadastrado com sucesso.",preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func createDevice(_ sender: Any) {
         if let nome = self.nomeDispositivoTextField.text, let equipamento = self.nomeEquipamentoTextField.text {
-            print(self.autoOffSwitch.isOn)
             self.newDevice["name"] = nome
             self.newDevice["equipament"] = equipamento
             self.newDevice["autoOff"] = self.autoOffSwitch.isOn
+            self.newDevice["idUser"] = UIDevice.current.identifierForVendor!.uuidString
             DeviceCRUD.createDevice(self.newDevice, { (status) in
                 print(status)
             })
+            self.singupSuccess()
         }
     }
     

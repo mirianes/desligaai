@@ -8,4 +8,6 @@
 
 import Foundation
 
-let databaseEndpoint = "https://hackatruck20-nodered.mybluemix.net"
+let databaseEndpoint = "https://desligaai.mybluemix.net/"
+
+let iotEndpoint = "https://desligaiapp.mybluemix.net/"
